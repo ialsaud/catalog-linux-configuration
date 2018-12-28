@@ -24,20 +24,20 @@ Submission attempt to Misk Udacity FSDN two project.
 
 # important directories and files
 ## user access
-* created two users developer, grader
+created two users developer, grader
 ```
 sudo adduser <username>
 ```
-* added those two users to /etc/sudoers.d
+added those two users to '/etc/sudoers.d/90-cloud-init-users'
 ```
 <username> ALL=(ALL) NOPASSWD:ALL
 ```
-* configured /etc/ssh/sshd_config (only changed the following)
+configured '/etc/ssh/sshd_config' (only changed the following)
 ```
 port 2200
 PermitRootLogin no # to disable root account login
 ```
-* restart ssh
+restart ssh
 ```
 sudo service ssh restart
 ```
@@ -64,7 +64,7 @@ To                         Action      From
 
 
 ## webserver setup
-* installed apache2, postgresql and wsgi_mod
+installed apache2, postgresql and wsgi_mod
 ```
 sudo apt-get install apache2
 sudo apt-get install libapache2-mod-wsgi
@@ -72,18 +72,18 @@ sudo apt-get install postgresql
 ```
 
 ### setting up postgresql database (as sqlite only support local databases)
-* made a user, catalog, in psql for our site to logon from
+made a user, catalog, in psql for our site to logon from
 ```
 developer$ sudo su - postgres
 postgres$ psql
 postgres=# CREATE USER catalog WITH PASSWORD 'catalog';
 postgres=# ALTER USER catalog CREATEDB;
 ```
-* create database, catalog, for our code to use.
+create database, catalog, for our code to use.
 ```
 postgres=# CREATE DATABASE catalog WITH OWNER catalog;
 ```
-* configure the permission for the database.
+configure the permission for the database.
 ```
 postgres=# \c catalog
 catalog=# REVOKE ALL ON SCHEMA public FROM public;
@@ -91,32 +91,30 @@ catalog=# GRANT ALL ON SCHEMA public TO catalog;
 ```
 
 ## code setup
-* clone catalog project into /etc/www/ creating /etc/www/Catalog
+clone catalog project into '/etc/www/'' creating '/etc/www/Catalog'
 ```
 git clone https://github.com/ialsaud/Catalog
 ```
 
-* change all instances of the following to
+change all instances of the following to
 ```
 engine = create_engine('sqlite:///catalog.db') # from
 engine = create_engine('postgresql://catalog:catalog@localhost/catalog') # to
 ```
 
 ### created virtual environment for the code.
-* ran this code
-    ```sudo virtualenv venv```
-* which creates the following
-    ```
-    /var/www/Catalog/venv
-                         /bin
-                         /local
-                         /include
-                         /lib
-  ```
-** installed packages
-    ```sudo venv/bin/pip install -r requirements.txt```
-
-
+ran ```sudo virtualenv venv``` to create virtual environment, which creates the following
+```
+/var/www/Catalog/venv
+                     /bin
+                     /local
+                     /include
+                     /lib
+```
+installed packages
+```
+sudo venv/bin/pip install -r requirements.txt
+```
 
 ## running the site
 * execute database code
@@ -124,8 +122,8 @@ engine = create_engine('postgresql://catalog:catalog@localhost/catalog') # to
 sudo python database_setup.py
 sudo python seeder.py
 ```
-* created /var/www/Catalog/application.wsgi to run our application.py
-* created /etc/apache2/sites-avalible/catalog.conf
+* created '/var/www/Catalog/application.wsgi' to run our 'application.py'
+* created '/etc/apache2/sites-avalible/catalog.conf'
 * ran ```sudo a2ensite catalog.conf```
 * restarted apache ```sudo apache2ctl restart```
 * monitored logs using ```tail -f /var/log/apache2/error.log```
