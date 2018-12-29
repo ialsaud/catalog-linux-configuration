@@ -44,19 +44,14 @@ sudo service ssh restart
 
 ## firewall setup
 ```
-developer:/var/www/Catalog$ sudo ufw status
 Status: active
 
 To                         Action      From
 --                         ------      ----
-22/tcp                     ALLOW       Anywhere
 80/tcp                     ALLOW       Anywhere
-22                         ALLOW       Anywhere
 2200                       ALLOW       Anywhere
 123                        ALLOW       Anywhere
-22/tcp (v6)                ALLOW       Anywhere (v6)
 80/tcp (v6)                ALLOW       Anywhere (v6)
-22 (v6)                    ALLOW       Anywhere (v6)
 2200 (v6)                  ALLOW       Anywhere (v6)
 123 (v6)                   ALLOW       Anywhere (v6)
 ```
