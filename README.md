@@ -4,15 +4,18 @@ Submission attempt to Misk Udacity FSDN two project.
 * **Instructor** Elham Jaffar
 * **Date** 12/28/2018
 
+# update 12/30/2019
+Project no longer functional; please contact owner for more info.
+
 # required info
-* IP address: 3.120.149.134
-* URL: http://3.120.149.134.xip.io/
+* IP address: ~~3.120.149.134~~
+* URL: ~~http://3.120.149.134.xip.io/~~
 
 
 # Getting started
-* The site is up and visiting (http://3.120.149.134.xip.io/).
+* ~~The site is up and visiting (http://3.120.149.134.xip.io/).~~
 * To connect via ssh type the following in your terminal:
-```ssh grader@3.120.149.134 -p 2200 -i path/to/privkey```
+```ssh grader@<server ip> -p 2200 -i path/to/privkey```
 
 
 # software installed
